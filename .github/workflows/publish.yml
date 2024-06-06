@@ -60,3 +60,12 @@ jobs:
           subject-digest: ${{ steps.push.outputs.digest }}
           sbom-path: 'sbom.spdx.json'
           push-to-registry: true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: iac
+          path: bucket.tf
+      - name: Generate artifact attestation for IaC
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-path: bucket.tf
+          push-to-registry: true
