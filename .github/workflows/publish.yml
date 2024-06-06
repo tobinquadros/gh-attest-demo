@@ -68,4 +68,3 @@ jobs:
         uses: actions/attest-build-provenance@v1
         with:
           subject-path: bucket.tf
-          push-to-registry: true
