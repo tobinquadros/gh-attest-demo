@@ -50,13 +50,13 @@ jobs:
         with:
           subject-name: ${{ env.IMAGE_URL }}
           subject-digest: ${{ steps.push.outputs.digest }}
-          push-to-registry: true
+          push-to-registry: false
       - uses: actions/attest-sbom@v1
         with:
           subject-name: ${{ env.IMAGE_URL }}
           subject-digest: ${{ steps.push.outputs.digest }}
           sbom-path: 'sbom.spdx.json'
-          push-to-registry: true
+          push-to-registry: false
       - uses: actions/upload-artifact@v4
         with:
           name: iac
@@ -65,3 +65,4 @@ jobs:
         uses: actions/attest-build-provenance@v1
         with:
           subject-path: bucket.tf
+          push-to-registry: false
