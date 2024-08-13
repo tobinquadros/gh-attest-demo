@@ -1,8 +1,8 @@
 name: publish
 
 env:
-  IMAGE_URL: 590184084703.dkr.ecr.us-east-1.amazonaws.com/gh-attest-demo
-  REKOR_REKOR_SERVER: http://internal-CodeLe-LoadB-pVpaDEdB6vXx-742236616.us-east-1.elb.amazonaws.com 
+  IMAGE_URL: 024848460091.dkr.ecr.us-east-1.amazonaws.com/gh-attest-demo
+  REKOR_REKOR_SERVER: http://internal-CodeLe-LoadB-tsCBjoli2cVH-1082016437.us-east-1.elb.amazonaws.com
 
 on:
   workflow_dispatch:
@@ -35,8 +35,8 @@ jobs:
       - uses: anchore/sbom-action@v0
         with:
           path: .
-          format: 'spdx-json'
-          output-file: 'sbom.spdx.json'
+          format: "spdx-json"
+          output-file: "sbom.spdx.json"
       - name: Build and push Docker image
         id: push
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
@@ -55,7 +55,7 @@ jobs:
         with:
           subject-name: ${{ env.IMAGE_URL }}
           subject-digest: ${{ steps.push.outputs.digest }}
-          sbom-path: 'sbom.spdx.json'
+          sbom-path: "sbom.spdx.json"
           push-to-registry: false
       - uses: actions/upload-artifact@v4
         with:
